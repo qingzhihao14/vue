@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!--
+            v-model 双向数据绑定  value
+            v-on
+
+            <input v-bind:type="ty" v-bind:title="hh">
+        -->
+        <input :type="ty" :tilte="hh">
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                hh : "youxiu",
+                ty : "button"
+            },
+            
+        });
+    </script>
+</body>
+
+</html>

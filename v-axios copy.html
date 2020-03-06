@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <!--
+        一定要先导入vue再导入axios
+
+    -->
+    <script src="./node_modules/axios/dist/axios.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            id:<input type="text" v-model="id"> &nbsp;
+            name:<input type="text" v-model="name"> &nbsp;
+            <button @click="commit" >提交</button>
+        </div>
+        <div>
+            <p v-for="(item,index) in person" :key="item.id">
+                <input type="checkbox"> {{item.id}} --> {{item.name}}
+            </p>
+
+        </div>
+    </div>
+    <script>
+        axios.defaults.baseURL="http://localhost:9999";
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                id : "",
+                name : "",
+                person: []
+            },
+            methods: {
+
+                commit() {
+                    // id name 组成一个对象 再放入到person数组里面
+                    // 但是数据库并没有存入这样的数据
+                    /*
+                        url代表你要向什么地址发送post请求
+                        param要携带什么样的数据
+
+                    */
+                   let url = "/person/add"
+                   let params = new URLSearchParams();
+                   params.append("id",this.id);
+                   params.append("name",this.name);
+                   
+                   /*
+                    当这段代码执行完成后，数据已经进入到数据库中，
+                    但是页面中person没有改变，还是原来的数据
+                   */
+                   axios.post(url,params)
+                    .then(res => {
+                        if(res.status == 200) {
+                             this.getAlll();            
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err); 
+                    })
+                },
+                getAlll() {
+                    
+                let url = "/person/getAll";
+                    axios.get(url)
+                    .then(response => {
+                        // 一定要根据状态码去判断数据有没有成功
+                        if(response.status == 200) {
+                            this.person = response.data;
+                        }
+                        
+                    })
+                    .catch(response => {
+                        console.info(response);
+                    })      
+                }
+
+
+            },
+            created () { // 当调用这个函数的时候 data,method已经初始化了，但是页面还是没有展示的数据
+                //1. 访问后端
+                // 2. 将结person
+                /*
+                    axios.get(url)
+                    url 表示向什么地址发送请求
+                        http://localhost:9999/person/getAll
+                    params 代表发送请求时需要携带的数据
+                    .then() 请求成功 
+                    .catch（） 请求失败
+
+                */
+               this.getAlll();            
+            }
+            
+        });
+    </script>
+</body>
+
+</html>

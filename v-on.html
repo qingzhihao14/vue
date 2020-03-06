@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <style>
+        .outter {
+            height: 50%;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!--
+            当点击这个按钮的时候触发一个test方法
+            <button v-on:click="test">点击</button>
+        -->
+        <!--
+            <div class="outter" @click="outter">
+                .stop阻止事件事件冒泡行为
+                <button @click.stop="test">点击</button>
+            </div>
+            -->
+            <!--
+                .prevent 阻止默认的事件行为
+                <a href="https://www.baidu.com" @click.prevent="turn">跳转</a>
+            -->
+            <!--
+
+                    修改事件的顺序，默认事件是从里面到外面
+                    使用这个事件修饰符
+                    事件就是从外面到里面
+                    .capture 只能加在外面，如果说加载div里面，没有效果
+                    <div class="outter" @click.capture="outter">
+                        <button @click="test">按钮</button> 
+                    </div>
+            -->
+            <!--
+
+                    .once 事件只触发一次
+                    <button @click.once="test">点击</button>
+            -->
+            <!--
+                .self 只有当点击自己的时候才能够触发，没有点击到自己就不触发
+                这个也可以阻止事件的冒泡行为
+                但是需要注意的是
+                .self
+                .stop 
+                <div class="outter" @click.self="outter">
+                    <button @click="test">按钮</button> 
+                </div>
+            -->
+            <div class="outter" @click.self="outter">
+                <button @click.stop.once="test">按钮</button> 
+            </div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {}, // 存放数据
+            methods: {
+                outter() {
+                    alert("我是div")
+                },
+                test() {
+                    alert("我是div里面的按钮");
+                },
+                turn() {
+                    alert("我是超链接");
+                }
+            }
+          
+        });
+    </script>
+</body>
+
+</html>

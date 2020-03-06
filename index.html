@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+
+        <!--
+            插值表达式
+        -->
+        {{ id }}
+    </div>
+    <!--
+        在普通网页中使用vue，需要注意以下步骤：
+            我们是一个基于mvvm模型的一个框架
+            m: 装在数据 就是vue对象中的data
+            v: 试图： 网页片段
+            vm 试图模型对象: 在vue中，vue对象就是我们的vm对象
+
+    -->
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el : "#app", // 告诉vue以后要渲染的试图是哪一个
+            data : { // 模型
+                id : 1
+            }
+        });
+
+    </script>
+    
+</body>
+</html>

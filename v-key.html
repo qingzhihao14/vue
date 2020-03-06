@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            id:<input type="text" v-model="id"> &nbsp;
+            name:<input type="text" v-model="name"> &nbsp;
+            <button @click="commit">提交</button>
+        </div>
+        <div>
+            <p v-for="(item,index) in person" :key="item.id">
+                <input type="checkbox"> {{item.id}} --> {{item.name}}
+            </p>
+
+        </div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                id : "",
+                name : "",
+                person: [
+                    {
+                        id :  1,
+                        name : "李世明"
+                    },
+                    {
+                        id :  2,
+                        name : "李世明1"
+                    },
+                    {
+                        id :  3,
+                        name : "李世明2"
+                 }]
+            },
+            methods: {
+                commit() {
+                    let kk = {id : this.id,name : this.name};
+                    // 在数据末尾追加新的数据
+                    // this.person.push(kk);
+                    // 将数据添加到最前面
+                    this.person.unshift(kk);
+                }
+            }
+            
+        });
+    </script>
+</body>
+
+</html>

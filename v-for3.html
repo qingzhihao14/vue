@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!--
+            使用v-for去遍历对象的时候
+            key: 对象的属性名
+            value: 对象的属性值
+            index 循环的索引
+        -->
+        <span v-for="(value,key,index) in person">
+            {{key}}: {{value}} : {{index}} <br>
+        </span>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                person : {
+                    id : 1,
+                    name : "wangwu",
+                    age : 14
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

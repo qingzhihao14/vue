@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!--
+            v-for 只能加载标签上
+            v-for 遍历普通的数组
+            (item,index) in list
+            item : 数组中的元素
+            index ： 数组的索引
+        -->
+        <span v-for="(item,index) in list">
+            {{item}} --> {{index}} <br>
+        </span>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                list : [12,13,15,14,7]
+            },
+            
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <style>
+        .one {
+            height: 200px;
+            background-color: burlywood;
+        }
+        .two {
+            height: 200px;
+            background-color:chartreuse;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!--
+            v-if 如果值为false   那么该改签内所有内容不展示
+            否则展示
+            <div class="one" v-if="flag"></div>
+            <div class="two" v-if="flag1"></div>
+            v-show 和 v-if效果一摸一样
+            只不过 v-if 会先把标签删除，如果true 就会重新创建标签
+            v-if 性能要求高一点
+            v-show 只是把标签内容给隐藏了，并不是删除
+            <div class="one" v-show="flag"></div>
+            <div class="two" v-show="flag1"></div>
+        -->
+        <div v-if="Math.random() > 0.5">
+            Now you see me
+          </div>
+          <div v-else>
+            Now you don't
+          </div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                flag : true,
+                flag1 : false
+            }
+            
+        });
+    </script>
+</body>
+
+</html>

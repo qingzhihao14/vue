@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <style>
+        .show {
+            height: 200px;
+            width: 100px;
+            background-color: aquamarine;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <!--
+
+                     @keyup 会绑定所有的键盘
+                     但是我们只想要绑定entry
+            -->
+            <input type="text" v-model="inpu" @keyup.enter="show"> &nbsp;&nbsp; 
+            <button @click="show">commit</button>
+        </div>
+        <div class="show">
+                {{reult}}
+        </div>
+
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                inpu : "",
+                reult : ""
+
+            },
+            methods: {
+                show() {
+                    this.reult = this.inpu;
+                    this.inpu="";
+                }
+            }
+            
+        });
+    </script>
+</body>
+
+</html>

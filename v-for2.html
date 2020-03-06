@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <!--
+            v-for遍历对象数组
+            第一个item元素代表遍历出来的对象
+            index 代表数组的索引
+        -->
+        <span v-for="(item,index) in list">
+            {{item.id}} --> {{item.name}} --> {{item.age}} --- > {{index}}<br>
+        </span>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                list : [
+                    {
+                        id : 1,
+                        name : "wangwu",
+                        age : 15,
+                    },
+                    {
+                        id : 2,
+                        name : "wangwu2",
+                        age : 17,
+                    },
+                    {
+                        id : 3,
+                        name : "wangwu3",
+                        age : 18,
+                    }
+
+                ]
+
+            }
+            
+        });
+    </script>
+</body>
+
+</html>
